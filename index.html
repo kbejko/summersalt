@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Summersalt</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    
+    <main>
+      <header class="header">
+        <h1>Summers<span class="flip">a</span>lt</h1>
+      </header>
+
+      <section class="products">
+
+        <a class="product" v-for="product in products" href="#">
+          <div class="product_bg"></div>
+          <img class="product_img" v-lazy="product.images[0].src" :alt="product.title">
+          <h2 class="product_title" v-cloak>{{product.title}}</h2>
+          <h3 class="product_price" v-cloak>${{product.variants[0].price}}</h3>
+        </a>
+
+      </section>
+      <section v-if="loading" class="loading-icon"></section>
+
+    </main>
+
+    <section v-if="error">
+      <p v-cloak>We're sorry, something has gone wrong. Please try again.</p>
+    </section>
+  </div>
+  
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- vue component for lazy loading images -->
+  <script src="https://unpkg.com/vue-lazyload/vue-lazyload.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
